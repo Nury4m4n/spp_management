@@ -1,11 +1,11 @@
-<?php 
-	$judul = "MASTER KELAS";
-	include "templates/templates.php";
+<?php
+$judul = "MASTER KELAS";
+include "templates/templates.php";
 ?>
 
 <div class="container">
-  <div class="row">
-    <div class="col-10">
+	<div class="row">
+		<div class="col-10">
 			<h2>Rekapitulasi Master Kelas</h2>
 			<hr>
 			<button type="button" class="badge badge-primary p-2 mb-3" data-toggle="modal" data-target="#staticBackdrop">
@@ -19,33 +19,35 @@
 						<th>Kelas</th>
 						<th>Nama Kelas</th>
 						<th>Kompetensi Keahlian</th>
+						<th>Wali Kelas</th>
 						<th>Aksi</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php
 					$no 		= 1;
-					$sql 		= "SELECT * FROM kelas a INNER JOIN kompetensi_keahlian b ON a.id_kompetensi=b.id_kompetensi ORDER BY b.nama_kompetensi_keahlian, a.kelas, a.nama_kelas";
+					$sql 		= "SELECT * FROM kelas a INNER JOIN kompetensi_keahlian b ON a.id_kompetensi=b.id_kompetensi ORDER BY b.nama_kompetensi_keahlian, a.kelas, a.nama_kelas, a.wali_kelas";
 					$query 	= mysqli_query($koneksi, $sql);
-					while($data = mysqli_fetch_array($query)){
-						$id_kelas=$data['id_kelas'];?>
+					while ($data = mysqli_fetch_array($query)) {
+						$id_kelas = $data['id_kelas']; ?>
 						<tr>
-							<td align="center" width="5%"><?= $no++;?>.</td>
-							<td><?= $data['kelas'];?></td>
-							<td><?= $data['kelas'];?> - <?= $data['nama_kelas'];?></td>
-							<td><?= $data['nama_kompetensi_keahlian'];?></td>
+							<td align="center" width="5%"><?= $no++; ?>.</td>
+							<td><?= $data['kelas']; ?></td>
+							<td><?= $data['kelas']; ?> - <?= $data['nama_kelas']; ?></td>
+							<td><?= $data['nama_kompetensi_keahlian']; ?></td>
+							<td><?= $data['wali_kelas']; ?></td>
 							<td align="center" width="25%">
-								<?php 
-									$sql1="SELECT * FROM detail_siswa WHERE id_kelas = '$id_kelas'";
-									$query1=mysqli_query($koneksi, $sql1);
-									if(mysqli_num_rows($query1)=='0'){?>
-										<a href="kelas-edit.php?id_kelas=<?= $data['id_kelas'];?>" class="badge badge-primary p-2" title="Edit"><i class="fas fa-edit"></i></a> | <a href="kelas-delete.php?id_kelas=<?= $data['id_kelas'];?>" class="badge badge-danger delete-data p-2" title='Delete'><i class="fas fa-trash"></i></a>
-										<?php 
-									}?>
+								<?php
+								$sql1 = "SELECT * FROM detail_siswa WHERE id_kelas = '$id_kelas'";
+								$query1 = mysqli_query($koneksi, $sql1);
+								if (mysqli_num_rows($query1) == '0') { ?>
+									<a href="kelas-edit.php?id_kelas=<?= $data['id_kelas']; ?>" class="badge badge-primary p-2" title="Edit"><i class="fas fa-edit"></i></a> | <a href="kelas-delete.php?id_kelas=<?= $data['id_kelas']; ?>" class="badge badge-danger delete-data p-2" title='Delete'><i class="fas fa-trash"></i></a>
+								<?php
+								} ?>
 							</td>
 						</tr>
-						<?php
-					}?>
+					<?php
+					} ?>
 				</tbody>
 			</table>
 		</div>
@@ -57,7 +59,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="staticBackdropLabel">	
+				<h5 class="modal-title" id="staticBackdropLabel">
 					Input Master Kelas
 				</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -68,7 +70,7 @@
 				<form action="kelas-simpan.php" method="post">
 					<!-- Kelas -->
 					<div class="input-group mb-1">
-						<span class="input-group-text lebar" >Kelas</span>
+						<span class="input-group-text lebar">Kelas</span>
 						<select name="kelas" class="form-control form-control-chosen" required>
 							<option value="" selected>~ Pilih Kelas ~</option>
 							<option value="X">Kelas X</option>
@@ -76,31 +78,37 @@
 							<option value="XII">Kelas XII</option>
 						</select>
 					</div>
-					
+
 					<!-- Nama Kelas -->
 					<div class="input-group mb-1">
-						<span class="input-group-text lebar" >Nama Kelas</span>
+						<span class="input-group-text lebar">Nama Kelas</span>
 						<input type="text" name="nama_kelas" required autocomplete="off" class="form-control form-control-sm" placeholder="Input Kelas">
 					</div>
-			
+
 					<!-- Kompetensi Keahlian -->
 					<div class="input-group mb-1">
-						<span class="input-group-text lebar" >Nama Kompetensi</span>
+						<span class="input-group-text lebar">Nama Kompetensi</span>
 						<select name="id_kompetensi" class="form-control form-control-chosen" required>
 							<option value="" selected>~ Pilih Nama Kompetensi Keahlian ~</option>
 							<?php
 							$sql = "SELECT * FROM kompetensi_keahlian ORDER BY nama_kompetensi_keahlian";
 							$query = mysqli_query($koneksi, $sql);
-							while($d = mysqli_fetch_array($query)){?>
-								<option value="<?= $d['id_kompetensi'];?>"><?= $d['nama_kompetensi_keahlian']; ?></option>
-								<?php
-							}?>
+							while ($d = mysqli_fetch_array($query)) { ?>
+								<option value="<?= $d['id_kompetensi']; ?>"><?= $d['nama_kompetensi_keahlian']; ?></option>
+							<?php
+							} ?>
 						</select>
 
 
 					</div>
+					<!-- Wali Keals -->
+
+					<div class="input-group mb-1">
+						<span class="input-group-text lebar">Wali Kelas</span>
+						<input type="text" name="wali_kelas" required autocomplete="off" class="form-control form-control-sm" placeholder="Input Wali Kelas">
+					</div>
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>  Simpan</button>
+						<button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
 					</div>
 				</form>
 			</div>
@@ -108,9 +116,9 @@
 	</div>
 </div>
 
-<?php include "templates/footer.php";?>
+<?php include "templates/footer.php"; ?>
 <script>
 	$(document).ready(function() {
 		$('#kelas').dataTable();
-  });
+	});
 </script>

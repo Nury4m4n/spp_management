@@ -5,25 +5,27 @@ include "koneksi.php";
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Laporan Pembayaran</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Laporan Pembayaran</title>
 </head>
+
 <body onload="window.print(); window.onafterprint = window.close;">
-	<h1>Rekapiluasi Pembayaran</h1>
-	<table border="1" width="100%">
-		<tr>
-			<th>No.</th>
-			<th>Nama Siswa</th>
-			<th>Nama Kelas</th>
-			<th>Tgl Bayar</th>
-			<th>Tahun Ajaran</th>
-			<th>Nama Bulan</th>
-			<th>Jumlah Bayar</th>
-			<th>Nama Petugas</th>
-		</tr>
-		<?php
+  <h1>Rekapiluasi Pembayaran</h1>
+  <table border="1" width="100%">
+    <tr>
+      <th>No.</th>
+      <th>Nama Siswa</th>
+      <th>Nama Kelas</th>
+      <th>Tgl Bayar</th>
+      <th>Tahun Ajaran</th>
+      <th>Nama Bulan</th>
+      <th>Jumlah Bayar</th>
+      <th>Nama Petugas</th>
+    </tr>
+    <?php
 		$no = 1;
 		$total_bayar=0;
 		if($level=="siswa"){
@@ -49,23 +51,24 @@ include "koneksi.php";
 			elseif($kd_bulan=="12"){$nama_bulan = "Desember";}
 			$total_bayar = $total_bayar + $data['jumlah_bayar'];
 			?>
-			<tr>
-				<td align="center" width="5%"><?= $no++;?>.</td>
-				<td><?= $data['nama'];?></td>
-				<td><?= $data['nama_kelas'];?></td>
-				<td><?= date_format(date_create($data['tgl_bayar']),"d M Y");?></td>
-				<td align="center"><?= $data['tahun_ajaran'];?></td>
-				<td><?= $nama_bulan;?></td>
-				<td align="right"><?= number_format($data['jumlah_bayar']);?></td>
-				<td><?= $data['nama_petugas'];?></td>
-			</tr>
-			<?php
+    <tr>
+      <td align="center" width="5%"><?= $no++;?>.</td>
+      <td><?= $data['nama'];?></td>
+      <td><?= $data['nama_kelas'];?></td>
+      <td><?= date_format(date_create($data['tgl_bayar']),"d M Y");?></td>
+      <td align="center"><?= $data['tahun_ajaran'];?></td>
+      <td><?= $nama_bulan;?></td>
+      <td align="right"><?= number_format($data['jumlah_bayar']);?></td>
+      <td><?= $data['nama_petugas'];?></td>
+    </tr>
+    <?php
 		}?>
-		<tr>
-			<td colspan="6" align="right">Total Bayar</td>
-			<td align="right"><?= number_format($total_bayar); ?></td>
-			<td></td>
-		</tr>
-	</table>
+    <tr>
+      <td colspan="6" align="right">Total Bayar</td>
+      <td align="right"><?= number_format($total_bayar); ?></td>
+      <td></td>
+    </tr>
+  </table>
 </body>
+
 </html>

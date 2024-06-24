@@ -3,7 +3,7 @@
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
     <div class="sidebar-brand-icon rotate-n-15">
-      <img src="img/logo.jpg" alt="logo" height="20px" width="20px">
+      <img src="img/logo.png" alt="logo" height="20px" width="20px">
     </div>
     <div class="sidebar-brand-text mx-3">UKK SPP</div>
   </a>
@@ -33,7 +33,6 @@
       </a>
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" href="petugas.php">PETUGAS</a>
           <a class="collapse-item" href="kompetensi-keahlian.php">NAMA KOMPETENSI</a>
           <a class="collapse-item" href="kelas.php">KELAS</a>
           <a class="collapse-item" href="spp.php">SPP</a>
@@ -70,10 +69,7 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <?php 
           if($_SESSION['level']!="siswa"){?>
-            <a class="collapse-item" href="laporan-petugas.php">Petugas</a>
-            <a class="collapse-item" href="laporan-nama-kompetensi.php">Nama Kompetensi</a>
             <a class="collapse-item" href="laporan-kelas.php">Kelas</a>
-            <a class="collapse-item" href="laporan-spp.php">SPP</a>
             <a class="collapse-item" href="laporan-siswa.php">Siswa</a>
             <?php 
           }?>

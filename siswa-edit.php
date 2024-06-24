@@ -11,68 +11,100 @@ $jenis_kelamin = $data['jenis_kelamin'];
 <div class="container">
   <div class="row">
     <div class="col-6">
-			<h2>Edit Master Siswa</h2>
-			<form action="siswa-update.php" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="nisn" value="<?= $nisn;?>">
+      <h2>Edit Master Siswa</h2>
+      <form action="siswa-update.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="nisn" value="<?= $nisn;?>">
 
-				<!-- Nama Siswa -->
-				<div class="input-group mb-1 input-sm">
-					<span class="input-group-text lebar" >Nama Siswa</span>
-					<input name="nama_siswa" type="text" class="form-control form-control-sm" value="<?= $data['nama_siswa'];?>" autocomplete="off" required>
-				</div>
+        <!-- NIK -->
+        <div class="input-group mb-1 input-sm">
+          <span class="input-group-text lebar">NIK</span>
+          <input name="nik" type="text" class="form-control form-control-sm" value="<?= $data['nik'];?>"
+            autocomplete="off" required>
+        </div>
+        <div class="input-group mb-1 input-sm">
+          <span class="input-group-text lebar">NIS</span>
+          <input name="nis" type="text" class="form-control form-control-sm" value="<?= $data['nis'];?>"
+            autocomplete="off" required>
+        </div>
+        <div class="input-group mb-1 input-sm">
+          <span class="input-group-text lebar">NISN</span>
+          <input name="nisn" type="text" class="form-control form-control-sm" value="<?= $data['nisn'];?>"
+            autocomplete="off" required>
+        </div>
 
-				<!-- Jenis Kelamin -->
-				<div class="input-group mb-1 input-sm">
-					<span class="input-group-text lebar" >Jenis Kelamin</span>
-					<select name="jenis_kelamin" class="form-control form-control-chosen" required>
-						<option value="Laki-laki" <?php if($jenis_kelamin=="Laki-laki"){echo 'selected="selected"';}?>>Laki-laki</option>
-						<option value="Perempuan" <?php if($jenis_kelamin=="Perempuan"){echo 'selected="selected"';}?>>Perempuan</option>
-					</select>
-				</div>
+        <!-- Nama Siswa -->
+        <div class="input-group mb-1 input-sm">
+          <span class="input-group-text lebar">Nama Siswa</span>
+          <input name="nama_siswa" type="text" class="form-control form-control-sm" value="<?= $data['nama_siswa'];?>"
+            autocomplete="off" required>
+        </div>
 
-				<!-- Alamat -->
-				<div class="input-group mb-1 input-sm">
-					<span class="input-group-text lebar" >Alamat</span>
-					<input name="alamat" type="text" class="form-control form-control-sm" required autocomplete="off" value="<?= $data['alamat'];?>">
-				</div>
+        <!-- Jenis Kelamin -->
+        <div class="input-group mb-1 input-sm">
+          <span class="input-group-text lebar">Jenis Kelamin</span>
+          <select name="jenis_kelamin" class="form-control form-control-chosen" required>
+            <option value="Laki-laki" <?php if($jenis_kelamin=="Laki-laki"){echo 'selected="selected"';}?>>Laki-laki
+            </option>
+            <option value="Perempuan" <?php if($jenis_kelamin=="Perempuan"){echo 'selected="selected"';}?>>Perempuan
+            </option>
+          </select>
+        </div>
 
-				<!-- Telp / WA -->
-				<div class="input-group mb-1 input-sm">
-					<span class="input-group-text lebar" >Telp / WA</span>
-					<input name="no_telepon" type="text" class="form-control form-control-sm" required autocomplete="off" value="<?= $data['no_telepon'];?>">
-				</div>
+        <!-- Nama Wali -->
+        <div class="input-group mb-1 input-sm">
+          <span class="input-group-text lebar">Nama Wali</span>
+          <input name="nama_wali" type="text" class="form-control form-control-sm" required autocomplete="off"
+            value="<?= $data['nama_wali'];?>">
+        </div>
 
-				  <!-- Photo -->
-					<div class="input-group mb-1">
+        <!-- Telp / WA -->
+        <div class="input-group mb-1 input-sm">
+          <span class="input-group-text lebar">Telp / WA</span>
+          <input name="no_telepon" type="text" class="form-control form-control-sm" required autocomplete="off"
+            value="<?= $data['no_telepon'];?>">
+        </div>
+
+        <!-- Alamat -->
+        <div class="input-group mb-1 input-sm">
+          <span class="input-group-text lebar">Alamat</span>
+          <input name="alamat" type="text" class="form-control form-control-sm" required autocomplete="off"
+            value="<?= $data['alamat'];?>">
+        </div>
+
+
+
+        <!-- Photo -->
+        <div class="input-group mb-1">
           <span class="input-group-text lebar">Photo</span>
           <?php 
           if($data['photo']!=""){?>
-            <img src="photo/<?= $data['photo']; ?>" alt="photo" width="40" height="40">
-            <?php 
+          <img src="photo/<?= $data['photo']; ?>" alt="photo" width="40" height="40">
+          <?php 
           }else{
 						if($jenis_kelamin=="Laki-laki"){?>
-            	<img src="photo/male.png" alt="photo" width="40" height="40">
-							<?php 
+          <img src="photo/male.png" alt="photo" width="40" height="40">
+          <?php 
 						}else{?>
-            	<img src="photo/female.png" alt="photo" width="40" height="40">
-            	<?php
+          <img src="photo/female.png" alt="photo" width="40" height="40">
+          <?php
 						}
           }?>
         </div>
 
-				<!-- Photo -->
+        <!-- Photo -->
         <div class="input-group mb-1">
           <span class="input-group-text lebar">Photo</span>
           <input type="file" name="photo" class="form-control form-control-sm" accept="image/*">
         </div>
 
-				<!-- Tombol Update / Cancel -->
-				<div class="input-group mb-1 input-sm">
-					<button type="submit" class="btn btn-sm btn-success"><i class="fas fa-save"></i> Update </button>| <a href="siswa.php" class="btn btn-sm btn-warning"><i class="fas fa-redo"></i> Cancel</a>
-				</div>
-			</form>
-		</div>
-	</div>
+        <!-- Tombol Update / Cancel -->
+        <div class="input-group mb-1 input-sm">
+          <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-save"></i> Update </button>| <a
+            href="siswa.php" class="btn btn-sm btn-warning"><i class="fas fa-redo"></i> Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 
 <?php include "templates/footer.php";?>

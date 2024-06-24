@@ -31,23 +31,23 @@
         $tgl = $data['tgl_bayar'];
         if(($tgl >= $periodeDari && $tgl <= $periodeSampai) || ($periodeDari == "" && $periodeSampai == "")){
           $tanggal =  date_format(date_create($data['tgl_bayar']),"d M Y");?>
-          <tr>
-            <td align="center"><?= $no++; ?>.</td>
-            <td align="center"><?= $tanggal; ?></td>
-            <td><?= $data['nisn']; ?></td>
-            <td><?= $data['nama_siswa']; ?></td>
-            <td align="center"><?= $data['kelas']; ?></td>
-            <td align="center"><?= $data['kelas']; ?>-<?= $data['nama_kelas']; ?></td>
-            <td align="right"><?= number_format($data['total_bayar'],0); ?></td>
-          </tr>
-          <?php
+    <tr>
+      <td align="center"><?= $no++; ?>.</td>
+      <td align="center"><?= $tanggal; ?></td>
+      <td><?= $data['nisn']; ?></td>
+      <td><?= $data['nama_siswa']; ?></td>
+      <td align="center"><?= $data['kelas']; ?></td>
+      <td align="center"><?= $data['kelas']; ?>-<?= $data['nama_kelas']; ?></td>
+      <td align="right"><?= number_format($data['total_bayar'],0); ?></td>
+    </tr>
+    <?php
         }
       }
     }?>
   </tbody>
 </table>
 <script>
-	$(document).ready(function() {
-		$('#tblTransaksi2').dataTable();
-	});
+$(document).ready(function() {
+  $('#tblTransaksi2').dataTable();
+});
 </script>

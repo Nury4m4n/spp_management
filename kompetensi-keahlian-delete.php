@@ -7,4 +7,3 @@ $sql = "DELETE FROM kompetensi_keahlian WHERE id_kompetensi ='$id_kompetensi'";
 mysqli_query($koneksi, $sql);
 $_SESSION['info'] = 'Dihapus';
 header("location:kompetensi-keahlian.php");
-?>

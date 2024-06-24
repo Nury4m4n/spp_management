@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?= $judul; ?></title>
     
-    <link rel="shortcut icon" href="img/logo.jpg" />
+    <link rel="shortcut icon" href="img/logo.png" />
     <link rel="stylesheet" href="vendor/fontawesome-free/css/all.min.css" />
     <link rel="stylesheet" href="css/sb-admin-2.min.css" />
     <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css" />
