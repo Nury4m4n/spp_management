@@ -1,9 +1,3 @@
-/*!
- * Bootstrap v4.4.1 (https://getbootstrap.com/)
- * Copyright 2011-2019 The Bootstrap Authors
- * Copyright 2011-2019 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -274,7 +268,7 @@ select {
 [type=reset],
 [type=submit],
 button {
-  -webkit-appearance: button
+  -webkit-appearance: button;
 }
 
 [type=button]:not(:disabled),
@@ -302,7 +296,7 @@ input[type=date],
 input[type=datetime-local],
 input[type=month],
 input[type=time] {
-  -webkit-appearance: listbox
+  -webkit-appearance: listbox;
 }
 
 textarea {
@@ -340,7 +334,7 @@ progress {
 
 [type=search] {
   outline-offset: -2px;
-  -webkit-appearance: none
+  -webkit-appearance: none;
 }
 
 [type=search]::-webkit-search-decoration {

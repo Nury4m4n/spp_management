@@ -87,7 +87,7 @@
 							$sql = "SELECT * FROM siswa ORDER BY nama_siswa, nisn";
 							$query = mysqli_query($koneksi, $sql);
 							while($d = mysqli_fetch_array($query)){?>
-                <option value="<?= $d['nisn'];?>">NISN: <?= $d['nisn']; ?> - <?= $d['nama_siswa']; ?></option>
+                <option value="<?= $d['nisn'];?>">NISN: <?= $d['nisn']; ?></option>
                 <?php
 							}?>
               </select>

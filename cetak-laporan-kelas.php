@@ -11,37 +11,37 @@
   <link rel="stylesheet" href="css/bootstrap-4_4_1.min.css" />
 
   <style>
-    body {
-      margin-left: 20px;
-      margin-top: 20px;
-    }
+  body {
+    margin-left: 20px;
+    margin-top: 20px;
+  }
 
-    .box-header {
-      margin-left: 30px;
-      margin-top: 20px;
-      margin-bottom: 5px;
-    }
+  .box-header {
+    margin-left: 30px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
 
-    tr>th {
-      text-align: center;
-      height: 35px;
-      border: 2px solid;
-    }
+  tr>th {
+    text-align: center;
+    height: 35px;
+    border: 2px solid;
+  }
 
-    tr>td {
-      padding-left: 5px;
-      vertical-align: middle !important;
-    }
+  tr>td {
+    padding-left: 5px;
+    vertical-align: middle !important;
+  }
 
-    tr>td>img {
-      margin-top: 3px;
-      margin-bottom: 3px;
-    }
+  tr>td>img {
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
 
-    #cetak {
-      margin-left: 30px;
-      margin-right: 30px;
-    }
+  #cetak {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
   </style>
 </head>
 
@@ -53,7 +53,7 @@
         <th>No.</th>
         <th>Kelas</th>
         <th>Nama Kelas</th>
-        <th>Nama Kompetensi Keahlian</th>
+        <th>Kompetensi Keahlian</th>
         <th>Wali Kelas</th>
       </tr>
     </thead>
@@ -64,13 +64,13 @@
       $sql     = "SELECT * FROM kelas a INNER JOIN kompetensi_keahlian b ON a.id_kompetensi=b.id_kompetensi ORDER BY a.nama_kelas";
       $query   = mysqli_query($koneksi, $sql);
       while ($data = mysqli_fetch_array($query)) { ?>
-        <tr>
-          <td align="center" width="5%"><?= $no++; ?>.</td>
-          <td><?= $data['kelas']; ?></td>
-          <td><?= $data['kelas']; ?>-<?= $data['nama_kelas']; ?></td>
-          <td><?= $data['nama_kompetensi_keahlian']; ?></td>
-          <td><?= $data['wali_kelas']; ?></td>
-        </tr>
+      <tr>
+        <td align="center" width="5%"><?= $no++; ?>.</td>
+        <td><?= $data['kelas']; ?></td>
+        <td><?= $data['kelas']; ?>-<?= $data['nama_kelas']; ?></td>
+        <td><?= $data['nama_kompetensi_keahlian']; ?></td>
+        <td><?= $data['wali_kelas']; ?></td>
+      </tr>
       <?php
       } ?>
     </tbody>

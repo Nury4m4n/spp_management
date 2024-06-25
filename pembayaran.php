@@ -25,7 +25,7 @@ $tgl = date('Y-m-d'); ?>
             <th>Nama Siswa</th>
             <th>Nama Kelas</th>
             <th>Tgl Bayar</th>
-            <th>Bulan - Tahun</th>
+            <!-- <th>Bulan - Tahun</th> -->
             <th>Jumlah Bayar</th>
             <th>Nama Petugas</th>
             <th>Aksi</th>
@@ -38,19 +38,20 @@ $tgl = date('Y-m-d'); ?>
           $query = mysqli_query($koneksi, $sql);
           if (mysqli_num_rows($query) > 0) {
             while ($data = mysqli_fetch_array($query)) { ?>
-              <tr>
-                <td align="center" width="5%"><?= $no++; ?>.</td>
-                <td align="center"><?= $data['tahun_ajaran']; ?></td>
-                <td><?= $data['nama_siswa']; ?></td>
-                <td><?= $data['nama_kelas']; ?> - <?= $data['nama_kompetensi_keahlian']; ?></td>
-                <td align="center" width="10%"><?= date_format(date_create($data['tgl_bayar']), "d-m-Y"); ?></td>
-                <td><?= $data['keterangan']; ?></td>
-                <td align="right"><?= number_format($data['nominal']); ?></td>
-                <td><?= $data['nama_petugas']; ?></td>
-                <td align="center" style="display:inline-block; width:100px;">
-                  <a href="pembayaran-delete.php?id_detail_pembayaran=<?= $data['id_detail_pembayaran']; ?>" class="badge badge-danger delete-data p-2" title='Delete'><i class="fas fa-trash"></i></a>
-                </td>
-              </tr>
+          <tr>
+            <td align="center" width="5%"><?= $no++; ?>.</td>
+            <td align="center"><?= $data['tahun_ajaran']; ?></td>
+            <td><?= $data['nama_siswa']; ?></td>
+            <td><?= $data['kelas']; ?> <?= $data['nama_kelas']; ?> - <?= $data['nama_kompetensi_keahlian']; ?>
+            </td>
+            <td align="center" width="10%"><?= date_format(date_create($data['tgl_bayar']), "d-m-Y"); ?></td>
+            <td align="right"><?= number_format($data['nominal']); ?></td>
+            <td><?= $data['nama_petugas']; ?></td>
+            <td align="center" style="display:inline-block; width:100px;">
+              <a href="pembayaran-delete.php?id_detail_pembayaran=<?= $data['id_detail_pembayaran']; ?>"
+                class="badge badge-danger delete-data p-2" title='Delete'><i class="fas fa-trash"></i></a>
+            </td>
+          </tr>
           <?php
             }
           } ?>
@@ -61,7 +62,8 @@ $tgl = date('Y-m-d'); ?>
 </div>
 
 <!-- Modal Tambah-->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -79,7 +81,8 @@ $tgl = date('Y-m-d'); ?>
           <!-- Tanggal Bayar -->
           <div class="input-group mb-1">
             <span class="input-group-text lebar">Tgl Bayar</span>
-            <input type="date" name="tgl_bayar" required autocomplete="off" class="form-control form-control-sm" value="<?= $tgl; ?>">
+            <input type="date" name="tgl_bayar" required autocomplete="off" class="form-control form-control-sm"
+              value="<?= $tgl; ?>">
           </div>
 
           <!-- Nama Siswa -->
@@ -92,9 +95,9 @@ $tgl = date('Y-m-d'); ?>
               $sql = "SELECT * FROM siswa a INNER JOIN detail_siswa b ON a.nisn=b.nisn INNER JOIN kelas c ON b.id_kelas=c.id_kelas INNER JOIN spp d ON b.id_spp=d.id_spp INNER JOIN kompetensi_keahlian e ON c.id_kompetensi=e.id_kompetensi INNER JOIN pembayaran f ON b.id_detail_siswa=f.id_detail_siswa";
               $query = mysqli_query($koneksi, $sql);
               while ($d = mysqli_fetch_array($query)) { ?>
-                <option value="<?= $d['id_pembayaran']; ?>">
-                  <?= $d['nama_siswa'] . ' - ' . $d['kelas'] . '-' . $d['nama_kelas'] . ' - ' . $d['nama_kompetensi_keahlian'] . ' - ' . $d['tahun_ajaran']; ?>
-                </option>
+              <option value="<?= $d['id_pembayaran']; ?>">
+                <?= $d['nisn'] . '-' . $d['nama_siswa']  ?>
+              </option>
               <?php
               } ?>
             </select>
@@ -125,29 +128,29 @@ $tgl = date('Y-m-d'); ?>
 
 <?php include "templates/footer.php"; ?>
 <script>
-  $(document).ready(function() {
-    $('#pembayaran').dataTable();
+$(document).ready(function() {
+  $('#pembayaran').dataTable();
 
-    $(document).on('change', '#pilihNamaSiswa', function() {
-      var id_pembayaran = $('[name="id_pembayaran"]').val();
-      $.ajax({
-        method: 'POST',
-        data: {
-          id_pembayaran: id_pembayaran
-        },
-        url: 'siswa-cari-ajax.php',
-        cache: false,
-        success: function(result) {
-          var row = JSON.parse(result);
-          var keterangan = row.keterangan;
-          var id_detail_pembayaran = row.id_detail_pembayaran;
-          var nominal = row.nominal;
-          $("[name='keterangan']").val(keterangan);
-          $("[name='nominal']").val(nominal);
-          $("[name='id_pembayaran']").val(id_pembayaran);
-        }
-      })
+  $(document).on('change', '#pilihNamaSiswa', function() {
+    var id_pembayaran = $('[name="id_pembayaran"]').val();
+    $.ajax({
+      method: 'POST',
+      data: {
+        id_pembayaran: id_pembayaran
+      },
+      url: 'siswa-cari-ajax.php',
+      cache: false,
+      success: function(result) {
+        var row = JSON.parse(result);
+        var keterangan = row.keterangan;
+        var id_detail_pembayaran = row.id_detail_pembayaran;
+        var nominal = row.nominal;
+        $("[name='keterangan']").val(keterangan);
+        $("[name='nominal']").val(nominal);
+        $("[name='id_pembayaran']").val(id_pembayaran);
+      }
+    })
 
-    });
   });
+});
 </script>
